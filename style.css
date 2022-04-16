@@ -1,0 +1,108 @@
+:root{
+    font-size: 10px;
+    --primary-color: #EC8B5E;
+    --secondary-color: #141A46;
+}
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Raleway', sans-serif;
+}
+
+.container{
+    height: 100vh;
+    overflow: auto;
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+}
+
+.left-side{
+    background-color: var(--primary-color);
+    display: grid;
+    grid-template-rows: 1fr 2fr 1fr;
+    color: var(--secondary-color);
+}
+
+.heading{
+    font-family: 'Raleway', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.4rem;
+}
+
+.heading > h1{
+    border-bottom: 4px solid;
+    border-color: var(--secondary-color);
+}
+
+.user-input-section{
+    grid-row: 2/3;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0 60px;
+    text-align: center;
+}
+
+form{
+    font-size: 1.7rem;
+}
+
+#title, #author, #pages, button{
+    height: 40px;
+    width: 200px;
+    font-size: 1.7rem;
+    margin-block: 20px;
+    margin-inline: 25px;
+}
+
+button{
+    cursor: pointer;
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    font-weight: 900;
+    border-radius: 12px;
+    border: 2px solid;
+    border-color: #EC8B5E;  
+    transition: 0.3s border ease-in-out;
+}
+
+button:hover{
+    transition: 0.3s all ease-in-out;
+    background-color: #EC8B5E;
+    color: #141A46;
+    border: 2px solid;
+    border-color: #141A46;    
+}
+
+#read, #not-read{
+    margin-inline: 13px;
+}
+
+.right-side{
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-rows: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.card{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-size: 1.7rem;
+    background-color: white;
+    border: 1px solid red;
+    border-radius: 20px;
+    margin-inline: 10px;
+    margin-block: 5px;
+}
+
+.card > p{
+    margin: 10px;
+}
