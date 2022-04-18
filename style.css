@@ -11,9 +11,10 @@
     font-family: 'Raleway', sans-serif;
 }
 
+
 .container{
     height: 100vh;
-    overflow: auto;
+    width: 100vw;
     display: grid;
     grid-template-columns: 1fr 4fr;
 }
