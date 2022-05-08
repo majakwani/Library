@@ -18,6 +18,8 @@ Book.prototype.printBook = function(){
 }
 
 let myLibrary = [];
+let titleBook;
+
 
 function addBookToLibrary(){
     let completed = false;
@@ -29,18 +31,6 @@ function addBookToLibrary(){
     if (bookRead.checked == true && bookNotRead.checked == false){
         completed = true;
     }
-    console.log(bookTitle.value)
-    
-    let bookObject = {
-        Title : bookTitle.value,
-        Author : bookAuthor.value,
-        Pages : bookPages.value,
-        Read : completed
-    };
-}
 
-function bookPrint(myLibrary){
-    const element = document.createElement('div');
-    element.classList.add('card');
+    titleBook = bookTitle.value;
 }
-
