@@ -30,6 +30,17 @@ function addBookToLibrary(){
         completed = true;
     }
     console.log(bookTitle.value)
-    let bookObject = {Title : bookTitle.value, Author : bookAuthor.value, Pages : bookPages.value, Read : completed};
-    myLibrary.push(bookObject);
+    
+    let bookObject = {
+        Title : bookTitle.value,
+        Author : bookAuthor.value,
+        Pages : bookPages.value,
+        Read : completed
+    };
 }
+
+function bookPrint(myLibrary){
+    const element = document.createElement('div');
+    element.classList.add('card');
+}
+
