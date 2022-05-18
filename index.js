@@ -6,8 +6,10 @@ const bookNotRead = document.querySelector('#not-read');
 const addBookButton = document.querySelector('.add-book');
 const editCard = document.querySelector('.edit-card');
 const rightSide = document.querySelector('.right-side');
+const form = document.querySelector('.form');
 
 let myLibrary = [];
+let explored = [];
 
 function Book(title, author, pages, read){
     this.title = title;
@@ -30,25 +32,35 @@ function addBookToLibrary(){
     if (bookRead.checked == true && bookNotRead.checked == false){
         completed = true;
         const book = new Book(bookTitle.value, bookAuthor.value, bookPages.value, 'Completed.')
-        myLibrary.push(book)
+        myLibrary.push(book);
+        displayBook(myLibrary);
+        form.reset();
     }
     else{
         const book = new Book(bookTitle.value, bookAuthor.value, bookPages.value, 'Not Completed.')
-        myLibrary.push(book)
+        myLibrary.push(book);
+        displayBook(myLibrary);
+        form.reset();
     }
 }
 
 function displayBook(bookLibrary){
 
     for(let i = 0; i < bookLibrary.length; i++){
-        const div = document.createElement('div');
-        div.setAttribute('class' , 'card');
+        explored.push(bookLibrary[i]);
+        let number = explored.length;
+        const element = document.createElement('div');
+        element.setAttribute('class' , 'card');
+        element.classList.add(`book${number}`);
 
-    let siteContent = `<p>Book Title: ${bookLibrary[i.title]}</p>
-    <p>Book Author: ${bookLibrary[i.author]}</p>
-    <p>Number of Pages: ${bookLibrary[i.pages]}</p>
-    <p>Book Completed : ${bookLibrary[i.read]}</p>
-    <p><button class="edit-card" type="button">Edit</button> <button type="button">Completed</button></p>`
-
+    let siteContent = `<p> Book Number: ${number}
+    <p>Book Title: ${bookLibrary[i].title}</p>
+    <p>Book Author: ${bookLibrary[i].author}</p>
+    <p>Number of Pages: ${bookLibrary[i].pages}</p>
+    <p>Book Completed : ${bookLibrary[i].read}</p>
+    <p><button class="edit-card" type="button">Edit</button> <button type="button">Completed</button> <button type = "button"> Delete </button></p>`;
+    element.innerHTML = siteContent;
+    rightSide.appendChild(element);
+    myLibrary.shift();
     }
 }
