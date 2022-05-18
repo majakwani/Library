@@ -4,9 +4,12 @@ const bookPages = document.querySelector('#pages');
 const bookRead = document.querySelector('#read');
 const bookNotRead = document.querySelector('#not-read');
 const addBookButton = document.querySelector('.add-book');
-const editCard = document.querySelector('.edit-card')
+const editCard = document.querySelector('.edit-card');
+const rightSide = document.querySelector('.right-side');
 
-function Book(){
+let myLibrary = [];
+
+function Book(title, author, pages, read){
     this.title = title;
     this.author = author;
     this.pages = pages;
@@ -14,12 +17,8 @@ function Book(){
 }
 
 Book.prototype.printBook = function(){
-    return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}.`;
+    return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}`;
 }
-
-let myLibrary = [];
-let titleBook;
-
 
 function addBookToLibrary(){
     let completed = false;
@@ -30,7 +29,26 @@ function addBookToLibrary(){
 
     if (bookRead.checked == true && bookNotRead.checked == false){
         completed = true;
+        const book = new Book(bookTitle.value, bookAuthor.value, bookPages.value, 'Completed.')
+        myLibrary.push(book)
     }
+    else{
+        const book = new Book(bookTitle.value, bookAuthor.value, bookPages.value, 'Not Completed.')
+        myLibrary.push(book)
+    }
+}
 
-    titleBook = bookTitle.value;
+function displayBook(bookLibrary){
+
+    for(let i = 0; i < bookLibrary.length; i++){
+        const div = document.createElement('div');
+        div.setAttribute('class' , 'card');
+
+    let siteContent = `<p>Book Title: ${bookLibrary[i.title]}</p>
+    <p>Book Author: ${bookLibrary[i.author]}</p>
+    <p>Number of Pages: ${bookLibrary[i.pages]}</p>
+    <p>Book Completed : ${bookLibrary[i.read]}</p>
+    <p><button class="edit-card" type="button">Edit</button> <button type="button">Completed</button></p>`
+
+    }
 }
