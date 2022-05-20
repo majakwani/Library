@@ -98,8 +98,8 @@ form>button:hover{
     background-color: var(--secondary-color);
     color: var(--primary-color);
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(258px, 1fr));
-    grid-template-rows: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    grid-template-rows: repeat(auto-fill, minmax(220px, 1fr));
 }
 
 .card{
@@ -113,8 +113,8 @@ form>button:hover{
 }
 
 .card>p>button{
-    width: 85px;
-    height: 24px;
+    width: 65px;
+    height: 35px;
     border-radius: 6px;
     background-color: var(--primary-color);
     color: var(--secondary-color);
@@ -122,6 +122,10 @@ form>button:hover{
     border-color: var(--secondary-color);
     font-size: 1.4rem;
     font-weight: bold;
+}
+
+.card > p > button:nth-child(2){
+    width: 120px;
 }
 
 .card>p>button:hover{
