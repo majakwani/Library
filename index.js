@@ -7,8 +7,7 @@ const addBookButton = document.querySelector('.add-book');
 const editCard = document.querySelector('.edit-card');
 const rightSide = document.querySelector('.right-side');
 const form = document.querySelector('.form');
-const deleteBtn = document.querySelectorAll('.deleteButton');
-const completedBtn = document.querySelector('.completedButton');
+const deleteBtn = document.querySelectorAll('.card > p > button:nth-child(3)');
 
 let myLibrary = [];
 let booksToDisplay = [];
@@ -66,7 +65,7 @@ function displayBook(bookLibrary){
         <p>Book Author: ${bookLibrary[i].author}</p>
         <p>Number of Pages: ${bookLibrary[i].pages}</p>
         <p>Book Completed : ${bookLibrary[i].read}</p>
-        <p><button class="edit-card" type="button">Edit</button> <button type="button" class = "completedButton">Completed</button> <button type = "button" class = "deleteButton"> Delete </button></p>`;
+        <p><button class="edit-card" type="button">Edit</button> <button type = "button" class = "deleteButton"> Delete </button></p>`;
         }
 
         else if (bookLibrary[i].read == 'Not Completed.'){
@@ -75,7 +74,7 @@ function displayBook(bookLibrary){
         <p>Book Author: ${bookLibrary[i].author}</p>
         <p>Number of Pages: ${bookLibrary[i].pages}</p>
         <p>Book Completed : ${bookLibrary[i].read}</p>
-        <p><button class="edit-card" type="button">Edit</button> <button type="button" class = "completedButton">Not Completed</button> <button type = "button" class = "deleteButton"> Delete </button></p>`;
+        <p><button class="edit-card" type="button">Edit</button> <button type = "button" class = "deleteButton"> Delete </button></p>`;
         }
 
         element.innerHTML = siteContent;

@@ -98,7 +98,7 @@ form>button:hover{
     background-color: var(--secondary-color);
     color: var(--primary-color);
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     grid-template-rows: repeat(auto-fill, minmax(220px, 1fr));
 }
 
@@ -124,9 +124,6 @@ form>button:hover{
     font-weight: bold;
 }
 
-.card > p > button:nth-child(2){
-    width: 120px;
-}
 
 .card>p>button:hover{
     background-color: var(--secondary-color);
