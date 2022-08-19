@@ -1,137 +1,144 @@
-:root{
-    font-size: 10px;
-    --primary-color: #EC8B5E;
-    --secondary-color: #141A46;
-}
-
 *{
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+:root{
+    font-size: 10px;
 }
 
 html{
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
 }
-
 body{
+    width: 100%;
     height: 100%;
 }
 
+.flex{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .container{
+    width: 100%;
     height: 100%;
-    width: 100vw;
     display: grid;
     grid-template-columns: 1fr 4fr;
 }
 
-.left-side{
-    min-height: 100%;
-    background-color: var(--primary-color);
+.left-part{
     display: grid;
-    grid-template-rows: 1fr 2fr 1fr;
-    color: var(--secondary-color);
+    grid-template-rows: 22rem 88rem;
+    background-color: rgb(236, 236, 236);
+    color: rgb(110, 110, 110);
+    border-right: 6px solid rgb(110, 110, 110);
 }
 
-.heading{
-    font-family: 'Raleway', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 2.4rem;
+.top-part{
+    font-size: 2.2rem;
 }
 
-.heading > h1{
-    border-bottom: 4px solid;
-    border-color: var(--secondary-color);
+.top-part > h1{
+    border-bottom: 4.5px solid rgb(110, 110, 110);
 }
 
-.user-input-section{
-    grid-row: 2/3;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    padding: 0 60px;
-    text-align: center;
+.bottom-part{
+    align-items: flex-start;
 }
 
 form{
-    font-size: 1.7rem;
+    font-size: 2.4rem;
+    border: 3px solid rgb(110, 110, 110);
+    padding: 20px;
+    border-radius: 10px;
 }
 
-#title, #author, #pages, form>button{
-    height: 40px;
-    width: 200px;
-    font-size: 1.7rem;
-    margin-block: 20px;
-    margin-inline: 25px;
-    border-radius: 12px;
+form > div > input{
+    font-size: 2rem;
+    border-radius: 7px;
+    margin-block: 18px;
     padding: 5px;
 }
 
-form>button{
+#read{
+    transform: scale(1.5);
+    margin-left: 10px;
+}
+
+.submit-button{
+    width: 210px;
+    border-color: rgb(110, 110, 110);
+    height: 30px;
+    font-size: 2rem;
+    border-radius: 7px;
+}
+
+.submit-button:hover{
     cursor: pointer;
-    background-color: var(--secondary-color);
-    color: var(--primary-color);
-    font-weight: 900;
-    border-radius: 12px;
-    border: 2px solid;
-    border-color: #EC8B5E;  
-    transition: 0.3s border ease-in-out;
+    background-color: rgb(110, 110, 110);
+    color: rgb(236, 236, 236);
+    border: 2px solid rgb(110, 110, 110);
+    transition: all 0.5s;
 }
 
-form>button:hover{
-    transition: 0.3s all ease-in-out;
-    background-color: #EC8B5E;
-    color: #141A46;
-    border: 2px solid;
-    border-color: #141A46;    
-}
-
-#read, #not-read{
-    margin-inline: 13px;
-}
-
-.right-side{
-    background-color: var(--secondary-color);
-    color: var(--primary-color);
+.right-part{
+    height: 100%;
+    background-color: rgb(110, 110, 110);
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    grid-template-rows: repeat(auto-fill, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fit, 300px);
 }
 
 .card{
-    border: 2px solid;
-    border-color: var(--primary-color);
-    border-radius: 20px;
-    font-size: 1.5rem;
-    padding-top: 20px;
-    margin-inline: 10px;
-    margin-top: 5px;
+    height: 300px;
+    margin: 1rem;
+    flex-direction: column;
+    font-size: 2.3rem;
+    background-color: rgb(236, 236, 236);
+    border-radius: 12px;
+    color: rgb(110, 110, 110);
 }
 
-.card>p>button{
-    width: 65px;
+.para > p{
+    padding: 10px;
+}
+
+.buttons{
+    flex-direction: column;
+}
+
+.delete-button{
+    color: rgb(110, 110, 110);
+    cursor: pointer;
+    border-radius: 8px;
+    width: 145px;
     height: 35px;
-    border-radius: 6px;
-    background-color: var(--primary-color);
-    color: var(--secondary-color);
-    border: 1.5px solid;
-    border-color: var(--secondary-color);
-    font-size: 1.4rem;
-    font-weight: bold;
+    margin: 5px;
+    font-size: 2rem;
 }
 
-
-.card>p>button:hover{
-    background-color: var(--secondary-color);
-    color: var(--primary-color);
-    border-color: var(--primary-color);
-    transition: all 0.3s;
+.red{
+    background-color: red;
+    color: white;
+    cursor: pointer;
+    border-radius: 8px;
+    width: 145px;
+    height: 35px;
+    margin: 5px;
+    font-size: 2rem;
 }
 
-.card > p{
-    margin: 10px;
+.green{
+    background-color: rgb(70, 214, 70);
+    color: white;
+    cursor: pointer;
+    border-radius: 8px;
+    width: 145px;
+    height: 35px;
+    margin: 5px;
+    font-size: 2rem;
 }

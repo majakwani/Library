@@ -1,97 +1,98 @@
-const bookTitle = document.querySelector('#title');
-const bookAuthor = document.querySelector('#author');
-const bookPages = document.querySelector('#pages');
-const bookRead = document.querySelector('#read');
-const bookNotRead = document.querySelector('#not-read');
-const addBookButton = document.querySelector('.add-book');
-const editCard = document.querySelector('.edit-card');
-const rightSide = document.querySelector('.right-side');
-const form = document.querySelector('.form');
-const deleteBtn = document.querySelectorAll('.card > p > button:nth-child(3)');
+const title = document.querySelector('#title');
+const author = document.querySelector('#author');
+const pages = document.querySelector('#pages');
+const read = document.querySelector('#read');
+const cardParent = document.querySelector('.right-part');
 
-let myLibrary = [];
-let booksToDisplay = [];
+let myLibrary = []; 
+let booksToPrint = [];
 
-// Constructor Function
-function Book(title, author, pages, read){
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
-}
-// Adding a function to our constructor through prototype object
-Book.prototype.printBook = function(){
-    return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}`;
-}
+class Book{
+    constructor(title, author, pages, read){
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
 
-// This function takes user input from a form, makes an object and add that object to an array.
-function addBookToLibrary(){
-    let completed = false;
-    if (bookTitle.value.length == 0 || bookAuthor.value.length == 0 || bookPages.value.length == 0 || bookRead.checked == false && bookNotRead.checked == false){
-        alert("Input fields are empty");
-        return false;
+        if(read == true){
+            this.read = "Read"
+        }
+        else{
+            this.read = "Not Read"
+        }
     }
 
-    if (bookRead.checked == true && bookNotRead.checked == false){
-        completed = true;
-        const book = new Book(bookTitle.value, bookAuthor.value, bookPages.value, 'Completed.')
-        booksToDisplay.push(book);
-        displayBook(booksToDisplay);
-        form.reset();
+    returnBook(){
+        console.log (`${this.title} by ${this.author}, ${this.pages}, ${this.read}.`);
+    }
+}
+
+// This function will take user input and store it in our array as an object
+function addBookToLibrary() {
+    if(title.value == "" || author.value == "" || pages.value == ""){
+        alert("Empty Input Fields");
+        location.reload();
+        return;
+    }
+
+    let book = new Book(title.value, author.value, pages.value, read.checked)
+    myLibrary.push(book);
+    booksToPrint.push(book);
+    title.value = '';
+    author.value = '';
+    pages.value = '';
+    read.checked = false;
+    printBooks(myLibrary.length);
+}
+
+function changeReadStatus(value){
+    if(value.innerHTML == "Read"){
+        value.removeAttribute("class");
+        value.classList.add("read-button" , "red");
+        value.innerHTML = "Not Read";
+    }
+    else if (value.innerHTML == "Not Read"){
+        value.removeAttribute("class");
+        value.classList.add("read-button" , "green");
+        value.innerHTML = "Read";
+    }
+}
+
+function deleteCard(cardIndex){
+    let card = cardIndex;
+    cardParent.removeChild(cardIndex)
+}
+
+function printBooks(index){
+    booksToPrint.forEach(element => {
+        let card = document.createElement('div');
+        card.setAttribute("id", index-1);
+    if(element.read == 'Read'){
+        card.classList.add("card", "flex");
+        card.innerHTML = `<div class="para">
+        <p>Title : ${element.title}</p>
+    <p>Author : ${element.author}</p>
+    <p>Pages : ${element.pages}</p>
+    </div>
+    <div class="buttons flex">
+        <button type="button" id = "${index}button" class = "read-button green" onclick = "changeReadStatus(document.getElementById('${index}button'))">${element.read}</button>
+        <button type="button" class="delete-button" onclick = "deleteCard(document.getElementById('${index-1}'))">Delete</button>
+    </div>`;
     }
     else{
-        const book = new Book(bookTitle.value, bookAuthor.value, bookPages.value, 'Not Completed.')
-        booksToDisplay.push(book);
-        displayBook(booksToDisplay);
-        form.reset();
+        card.classList.add("card", "flex");
+        
+        card.innerHTML = `<div class="para">
+        <p>Title : ${element.title}</p>
+    <p>Author : ${element.author}</p>
+    <p>Pages : ${element.pages}</p>
+    </div>
+    <div class="buttons flex">
+        <button type="button" id = "${index}button" class = "read-button red" onclick = "changeReadStatus(document.getElementById('${index}button'))">${element.read}</button>
+        <button type="button" class="delete-button" onclick = "deleteCard(document.getElementById('${index-1}'))">Delete</button>
+    </div>`;
     }
+
+    cardParent.append(card);
+    booksToPrint.pop();
+    });
 }
-
-// This function takes an array of books, display them on our HTML page.
-function displayBook(bookLibrary){
-
-    for(let i = 0; i < bookLibrary.length; i++){
-        siteContent = "";
-        myLibrary.push(bookLibrary[i]);
-        let number = myLibrary.length;
-
-        const element = document.createElement('div');
-        element.setAttribute('class' , 'card');
-        element.classList.add(`book${number}`);
-
-        if (bookLibrary[i].read == 'Completed.'){
-        siteContent = `<p> Book Number: ${number}
-        <p>Book Title: ${bookLibrary[i].title}</p>
-        <p>Book Author: ${bookLibrary[i].author}</p>
-        <p>Number of Pages: ${bookLibrary[i].pages}</p>
-        <p>Book Completed : ${bookLibrary[i].read}</p>
-        <p><button class="edit-card" type="button">Edit</button> <button type = "button" class = "deleteButton"> Delete </button></p>`;
-        }
-
-        else if (bookLibrary[i].read == 'Not Completed.'){
-        siteContent = `<p> Book Number: ${number}
-        <p>Book Title: ${bookLibrary[i].title}</p>
-        <p>Book Author: ${bookLibrary[i].author}</p>
-        <p>Number of Pages: ${bookLibrary[i].pages}</p>
-        <p>Book Completed : ${bookLibrary[i].read}</p>
-        <p><button class="edit-card" type="button">Edit</button> <button type = "button" class = "deleteButton"> Delete </button></p>`;
-        }
-
-        element.innerHTML = siteContent;
-
-        rightSide.appendChild(element);
-        booksToDisplay.shift();
-    }
-}
-
-deleteBtn.addEventListener('click', () => {
-
-})
-
-editCard.addEventListener('click', () => {
-
-})
-
-completedBtn.addEventListener('click' , () => {
-
-})
