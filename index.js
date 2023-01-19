@@ -12,17 +12,7 @@ class Book{
         this.title = title;
         this.author = author;
         this.pages = pages;
-
-        if(read == true){
-            this.read = "Read"
-        }
-        else{
-            this.read = "Not Read"
-        }
-    }
-
-    returnBook(){
-        console.log (`${this.title} by ${this.author}, ${this.pages}, ${this.read}.`);
+        this.read = read ? "Read" : "Not Read"
     }
 }
 
@@ -34,7 +24,7 @@ function addBookToLibrary() {
         return;
     }
 
-    let book = new Book(title.value, author.value, pages.value, read.checked)
+    const book = new Book(title.value, author.value, pages.value, read.checked)
     myLibrary.push(book);
     booksToPrint.push(book);
     title.value = '';
